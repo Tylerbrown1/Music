@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RightMenuSlider from "@material-ui/core/Drawer";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import {
@@ -35,12 +35,52 @@ const myStyles = makeStyles((theme) => ({
 	listItem: {
 		color: "white",
 	},
-	imgSalad: {
-		width: "5rem",
+	buttonDiv: {
+		display: "flex",
+		marginInlineStart: "auto",
+	},
+	signUpButton: {
+		backgroundColor: "#FFFFFF",
+		paddingRight: "12px",
+		paddingLeft: "12px",
+		borderBottomLeftRadius: "30px",
+		borderTopLeftRadius: "30px",
+		borderBottomRightRadius: "30px",
+		borderTopRightRadius: "30px",
+		paddingBottom: "10px",
+		paddingTop: "10px",
+		lineHeight: "16px",
+		fontWeight: 500,
+		fontSize: "14px",
+		cursor: "pointer",
+		transitionProperty: "background",
+		WebkitAppearance: "none",
+		boxShadow: "none",
+		borderStyle: "none",
+		marginLeft: "1rem",
+	},
+	logInButton: {
+		backgroundColor: "#000",
+		color: "#FFFFFF",
+		paddingRight: "12px",
+		paddingLeft: "12px",
+		borderBottomLeftRadius: "30px",
+		borderTopLeftRadius: "30px",
+		borderBottomRightRadius: "30px",
+		borderTopRightRadius: "30px",
+		paddingBottom: "10px",
+		paddingTop: "10px",
+		lineHeight: "16px",
+		fontWeight: 500,
+		fontSize: "14px",
+		cursor: "pointer",
+		transitionProperty: "background",
+		WebkitAppearance: "none",
+		boxShadow: "none",
+		borderStyle: "none",
 	},
 }));
 
-// Array for NavBar Icons and Text
 const menuItems = [
 	{
 		listIcon: <Home />,
@@ -50,11 +90,11 @@ const menuItems = [
 	{
 		listIcon: <DriveEtaIcon />,
 		listText: "Cars",
+		listPath: "/carSelection",
 	},
 	{
 		listIcon: <Apps />,
 		listText: "Orders",
-		listPath: "/orders",
 	},
 	{
 		listIcon: <ContactMail />,
@@ -84,7 +124,7 @@ const Navbar = () => {
 			<Divider />
 			<List>
 				{menuItems.map((lsItem, key) => (
-					<ListItem button key={key} to={lsItem.listPath}>
+					<ListItem button key={key} component={Link} to={lsItem.listPath}>
 						<ListItemIcon className={classes.listItem}>
 							{lsItem.listIcon}
 						</ListItemIcon>
@@ -116,6 +156,10 @@ const Navbar = () => {
 						>
 							{sideList("right")}
 						</RightMenuSlider>
+						<div className={classes.buttonDiv}>
+							<Button className={classes.logInButton}>Log In</Button>
+							<Button className={classes.signUpButton}>Sign Up</Button>
+						</div>
 					</Toolbar>
 				</AppBar>
 			</Box>

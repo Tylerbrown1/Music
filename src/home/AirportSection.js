@@ -40,7 +40,7 @@ const Cards = () => {
 							margin: "1.5rem 0.5rem",
 						}}
 					>
-						Learn More
+						Request Now
 					</Button>
 				</Grid>
 			</Grid>
