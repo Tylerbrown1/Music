@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { useForm } from "react-hook-form";
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
 import MapInput from "../components/Inputs/GoogleMapInput";
@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
 	const classes = useStyles();
 	const [value, setValue] = React.useState("Controlled");
+	const { register, handleSubmit } = useForm();
+
+	const onSubmit = (data) => {
+		console.log(data);
+	};
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
@@ -46,14 +51,20 @@ export default function Home() {
 							<div>
 								<h1>Request A Luxury Car Service</h1>
 							</div>
-							<form className={classes.root} noValidate autoComplete="off">
+							<form
+								onSubmit={handleSubmit(onSubmit)}
+								className={classes.root}
+								noValidate
+								autoComplete="off"
+							>
 								<div>
-									<MapInput />
+									<MapInput type="text" forwardRef={register} />
 								</div>
 								<div>
-									<MapDestination />
+									<MapDestination type="text" forwardRef={register} />
 								</div>
 								<Button
+									type="submit"
 									style={{
 										background: "black",
 										color: "white",

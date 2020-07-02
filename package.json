@@ -11,9 +11,12 @@
     "@testing-library/user-event": "^7.2.1",
     "autosuggest-highlight": "^3.1.1",
     "dotenv": "^8.2.0",
+    "firebase": "^7.15.5",
+    "firebaseui": "^4.5.1",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1"
