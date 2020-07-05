@@ -21,7 +21,7 @@ const carSection = () => {
 			<Paper>
 				<TextDiv>
 					<Typography variant="h5">
-						Giving World class service in <br /> 1000+ cities
+						World class service in <br /> Budapest
 					</Typography>
 				</TextDiv>
 

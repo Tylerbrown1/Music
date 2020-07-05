@@ -4,6 +4,7 @@ import data from "./carData";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import FilterBar from "./filterBar";
 
 //css styles
 const CarsUl = styled.ul`
@@ -46,11 +47,11 @@ function CarHomeScreen(props) {
 			{data.cars.map((car) => (
 				<li>
 					<div className="cars">
-						<Link to={"/carSelection/" + car._id}>
+						<Link to={"/results/" + car._id}>
 							<CarsImg className="cars-image" src={car.image} alt="cars" />
 						</Link>
 						<div className="product-name">
-							<Link to={"/carSelection/" + car._id}>{car.name}</Link>
+							<Link to={"/results/" + car._id}>{car.name}</Link>
 						</div>
 						<div className="car-brand">{car.brand}</div>
 

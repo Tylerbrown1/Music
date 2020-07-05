@@ -2,6 +2,12 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "./base.js";
 import { AuthContext } from "../Auth/Auth";
+import styled from "styled-components";
+
+//CSS
+const LoginDiv = styled.div`
+	margin-top: 10rem;
+`;
 
 const Login = ({ history }) => {
 	const handleLogin = useCallback(
@@ -12,7 +18,7 @@ const Login = ({ history }) => {
 				await app
 					.auth()
 					.signInWithEmailAndPassword(email.value, password.value);
-				history.push("/");
+				history.push("/home");
 			} catch (error) {
 				alert(error);
 			}
@@ -23,12 +29,13 @@ const Login = ({ history }) => {
 	const { currentUser } = useContext(AuthContext);
 
 	if (currentUser) {
-		return <Redirect to="/" />;
+		return <Redirect to="/home" />;
 	}
 
 	return (
-		<div>
+		<LoginDiv>
 			<h1>Log in</h1>
+			<h6>Not a member yet? Sign Up here</h6>
 			<form onSubmit={handleLogin}>
 				<label>
 					Email
@@ -40,7 +47,7 @@ const Login = ({ history }) => {
 				</label>
 				<button type="submit">Log in</button>
 			</form>
-		</div>
+		</LoginDiv>
 	);
 };
 

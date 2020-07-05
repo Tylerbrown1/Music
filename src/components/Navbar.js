@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RightMenuSlider from "@material-ui/core/Drawer";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
+import Login from "../Login/Login";
 import {
 	AppBar,
 	Toolbar,
@@ -94,7 +95,7 @@ const menuItems = [
 	},
 	{
 		listIcon: <Apps />,
-		listText: "Orders",
+		listText: "Services",
 	},
 	{
 		listIcon: <ContactMail />,
@@ -157,8 +158,20 @@ const Navbar = () => {
 							{sideList("right")}
 						</RightMenuSlider>
 						<div className={classes.buttonDiv}>
-							<Button className={classes.logInButton}>Log In</Button>
-							<Button className={classes.signUpButton}>Sign Up</Button>
+							<Button
+								component={Link}
+								to="/login"
+								className={classes.logInButton}
+							>
+								Log In
+							</Button>
+							<Button
+								component={Link}
+								to="/signup"
+								className={classes.signUpButton}
+							>
+								Sign Up
+							</Button>
 						</div>
 					</Toolbar>
 				</AppBar>
