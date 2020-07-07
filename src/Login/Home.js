@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-
+import TextField from "@material-ui/core/TextField";
 import GoogleMapInput from "../components/Inputs/GoogleMapInput";
 import GoogleMapDest from "../components/Inputs/GoogleMapDestination";
 import styled from "styled-components";
-
 import { Link } from "react-router-dom";
 import firebase from "./base";
+import { Button, Box } from "@material-ui/core";
+import Navbar from "../components/Navbar";
+import Grid from "@material-ui/core/Grid";
 
-const HomeDiv = styled.div`
-	margin-top: 10rem;
+const GoogleDiv = styled.div`
+	margin-top: 1rem;
+`;
+const StyledForm = styled.form``;
+const ImgStyle = styled.img`
+	width: 20rem;
 `;
 
 const Home = () => {
@@ -34,29 +40,62 @@ const Home = () => {
 	}
 
 	return (
-		<HomeDiv component="nav">
-			<button onClick={() => firebase.auth().signOut()}>Sign out</button>
-			<h2>Where can would you like to go?</h2>
-			<form onSubmit={onSubmit}>
-				<GoogleMapInput
-					value={pickUp}
-					onChange={(e) => setPickUp(e.currentTarget.value)}
-				/>
-				<GoogleMapDest
-					value={dropOff}
-					onChange={(e) => setDropOff(e.currentTarget.value)}
-				/>
+		<div component="nav">
+			<Navbar position="static" />
+			<Button onClick={() => firebase.auth().signOut()}>Sign out</Button>
+			<Grid container spacing={3}>
+				<Grid style={{ display: "flex", justifyContent: "center" }} item sm={6}>
+					<ImgStyle src="ser.png" alt="" />
+				</Grid>
+				<Grid item sm={6}>
+					<Box>
+						<h2>Where would you like to go?</h2>
+					</Box>
+					<StyledForm onSubmit={onSubmit}>
+						<GoogleMapInput
+							value={pickUp}
+							onChange={(e) => setPickUp(e.currentTarget.value)}
+						/>
+						<GoogleMapDest
+							value={dropOff}
+							onChange={(e) => setDropOff(e.currentTarget.value)}
+						/>
 
-				<input
-					type="time"
-					value={time}
-					onChange={(e) => setTime(e.currentTarget.value)}
-				/>
-				<Link to="/carSelection" type="submit">
-					<button type="submit">Next</button>
-				</Link>
-			</form>
-		</HomeDiv>
+						<GoogleDiv>
+							<TextField
+								id="datetime-local"
+								label="Appointment Time"
+								type="datetime-local"
+								defaultValue="2017-05-24T10:30"
+								InputLabelProps={{
+									shrink: true,
+								}}
+								onChange={(e) => setTime(e.currentTarget.value)}
+							/>
+						</GoogleDiv>
+						<div>
+							<Button
+								style={{ backgroundColor: "lightgrey", margin: "1rem" }}
+								type="submit"
+							>
+								Submit
+							</Button>
+							<Link to="/carSelection" type="submit">
+								<Button
+									style={{
+										backgroundColor: "black",
+										color: "white",
+										textDecorationLine: "underline",
+									}}
+								>
+									Next
+								</Button>
+							</Link>
+						</div>
+					</StyledForm>
+				</Grid>
+			</Grid>
+		</div>
 	);
 };
 

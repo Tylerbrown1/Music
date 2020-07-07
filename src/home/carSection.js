@@ -8,9 +8,7 @@ const CarImg = styled.img`
 	width: 15rem;
 `;
 
-const CarDiv = styled.div`
-	margin-top: 8rem;
-`;
+const CarDiv = styled.div``;
 const TextDiv = styled.div`
 	margin-left: 2rem;
 `;

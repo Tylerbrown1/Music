@@ -47,11 +47,11 @@ function CarHomeScreen(props) {
 			{data.cars.map((car) => (
 				<li>
 					<div className="cars">
-						<Link to={"/results/" + car._id}>
+						<Link to={"/eachcar/" + car._id}>
 							<CarsImg className="cars-image" src={car.image} alt="cars" />
 						</Link>
 						<div className="product-name">
-							<Link to={"/results/" + car._id}>{car.name}</Link>
+							<Link to={"/eachcar/" + car._id}>{car.name}</Link>
 						</div>
 						<div className="car-brand">{car.brand}</div>
 

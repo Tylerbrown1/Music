@@ -29,9 +29,9 @@ const myStyles = makeStyles((theme) => ({
 	},
 	avatar: {
 		display: "block",
-		margin: "0.5rem auto",
-		width: theme.spacing(16),
-		height: theme.spacing(16),
+		margin: "1rem auto",
+		width: theme.spacing(12),
+		height: theme.spacing(12),
 	},
 	listItem: {
 		color: "white",
@@ -121,8 +121,8 @@ const Navbar = () => {
 			<Button style={{ color: "white" }} onClick={togSlider("right", false)}>
 				X
 			</Button>
-			<Avatar className={classes.avatar} src="/G-wagon.png" alt="Avatar" />
-			<Divider />
+			<Avatar className={classes.avatar} src="/pink.jpg" alt="Avatar" />
+			<Divider style={{ backgroundColor: "white" }} />
 			<List>
 				{menuItems.map((lsItem, key) => (
 					<ListItem button key={key} component={Link} to={lsItem.listPath}>
@@ -135,48 +135,41 @@ const Navbar = () => {
 					</ListItem>
 				))}
 			</List>
+			<Divider style={{ backgroundColor: "white" }} />
 		</Box>
 	);
 
 	return (
-		<div>
-			<Box component="nav">
-				<AppBar style={{ backgroundColor: "black" }}>
-					<Toolbar>
-						<IconButton onClick={togSlider("right", true)}>
-							<Menu style={{ color: "white" }}></Menu>
-						</IconButton>
-						<Typography variant="h5" style={{ color: "white" }}>
-							LuxCar
-						</Typography>
+		<AppBar position="static" style={{ backgroundColor: "black" }}>
+			<Toolbar>
+				<IconButton onClick={togSlider("right", true)}>
+					<Menu style={{ color: "white" }}></Menu>
+				</IconButton>
+				<Typography variant="h5" style={{ color: "white" }}>
+					LuxCar
+				</Typography>
 
-						<RightMenuSlider
-							anchor="left"
-							open={state.right}
-							onClose={togSlider("right", false)}
-						>
-							{sideList("right")}
-						</RightMenuSlider>
-						<div className={classes.buttonDiv}>
-							<Button
-								component={Link}
-								to="/login"
-								className={classes.logInButton}
-							>
-								Log In
-							</Button>
-							<Button
-								component={Link}
-								to="/signup"
-								className={classes.signUpButton}
-							>
-								Sign Up
-							</Button>
-						</div>
-					</Toolbar>
-				</AppBar>
-			</Box>
-		</div>
+				<RightMenuSlider
+					anchor="left"
+					open={state.right}
+					onClose={togSlider("right", false)}
+				>
+					{sideList("right")}
+				</RightMenuSlider>
+				<div className={classes.buttonDiv}>
+					<Button component={Link} to="/login" className={classes.logInButton}>
+						Log In
+					</Button>
+					<Button
+						component={Link}
+						to="/signup"
+						className={classes.signUpButton}
+					>
+						Sign Up
+					</Button>
+				</div>
+			</Toolbar>
+		</AppBar>
 	);
 };
 

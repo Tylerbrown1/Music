@@ -17,6 +17,9 @@ const TextDiv = styled.div`
 	margin-top: 0rem;
 	margin-left: 0rem;
 `;
+const TypeDiv = styled.div`
+	margin-bottom: 1.5rem;
+`;
 
 const Cards = () => {
 	return (
@@ -27,7 +30,9 @@ const Cards = () => {
 				</Grid>
 
 				<Grid style={{ marginTop: "8rem", textAlign: "center" }} item sm={6}>
-					<Typography variant="h4">Airport Pickups</Typography>
+					<TypeDiv>
+						<Typography variant="h4">Airport Pickups</Typography>
+					</TypeDiv>
 					<Typography>
 						Find out where to meet your driver,
 						<br /> and get detailed directions for how to find your pickup

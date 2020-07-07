@@ -9,21 +9,20 @@ import { AuthProvider } from "./Auth/Auth";
 import HomeAuth from "./Login/Home";
 import PrivateRoute from "./Login/PrivateRoute";
 import Results from "../src/Login/Results";
+import eachCar from "../src/components/Cars/eachCar";
 
 export default function App() {
 	return (
 		<AuthProvider>
 			<Router>
 				<div>
-					<div>
-						<Navbar />
-					</div>
 					<Route exact path="/" component={Home} />
 					<Route exact={true} path="/carSelection" component={CarSelection} />
 					<PrivateRoute exact path="/home" component={HomeAuth} />
 					<Route path="/login" component={Login} />
 					<Route path="/signup" component={SignUp} />
 					<Route path="/results" component={Results} />
+					<Route path="/eachcar/" component={eachCar} />
 				</div>
 			</Router>
 		</AuthProvider>
