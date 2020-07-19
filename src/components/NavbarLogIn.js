@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import RightMenuSlider from "@material-ui/core/Drawer";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import Login from "../Login/Login";
+
 import {
   AppBar,
   Toolbar,
@@ -10,15 +11,17 @@ import {
   ListItemText,
   IconButton,
   Avatar,
-  Divider,
   List,
   Typography,
   Box,
   ListItemIcon,
   Button,
 } from "@material-ui/core";
-import { Home, ContactMail, Apps, Menu } from "@material-ui/icons";
+import { Home, Menu } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import firebase from "../Login/base";
+
+import { useStateValue } from "../StateProvider";
 
 // CSS Styles
 const myStyles = makeStyles((theme) => ({
@@ -39,9 +42,11 @@ const myStyles = makeStyles((theme) => ({
   buttonDiv: {
     display: "flex",
     marginInlineStart: "auto",
+    color: "#8c756A",
   },
-  signUpButton: {
-    backgroundColor: "#FFFFFF",
+  LogOutButton: {
+    backgroundColor: "#8c756A",
+    color: "white",
     paddingRight: "12px",
     paddingLeft: "12px",
     borderBottomLeftRadius: "30px",
@@ -60,37 +65,23 @@ const myStyles = makeStyles((theme) => ({
     borderStyle: "none",
     marginLeft: "1rem",
   },
-  logInButton: {
-    backgroundColor: "#8c756A",
-    color: "#FFFFFF",
-    paddingRight: "12px",
-    paddingLeft: "12px",
-    borderBottomLeftRadius: "30px",
-    borderTopLeftRadius: "30px",
-    borderBottomRightRadius: "30px",
-    borderTopRightRadius: "30px",
-    paddingBottom: "10px",
-    paddingTop: "10px",
-    lineHeight: "16px",
-    fontWeight: 500,
-    fontSize: "14px",
-    cursor: "pointer",
-    transitionProperty: "background",
-    WebkitAppearance: "none",
-    boxShadow: "none",
-    borderStyle: "none",
-  },
 }));
 
 const menuItems = [
   {
     listIcon: <Home />,
     listText: "Home",
-    listPath: "/",
+    listPath: "/home",
+  },
+  {
+    listIcon: <DriveEtaIcon />,
+    listText: "Rides",
+    listPath: "/rides",
   },
 ];
 
-const Navbar = () => {
+const NavbarTwo = (props) => {
+  const [{ order }, dispatch] = useStateValue();
   const [state, setState] = useState({
     right: false,
   });
@@ -131,7 +122,7 @@ const Navbar = () => {
           <Menu style={{ color: "#8c756A" }}></Menu>
         </IconButton>
         <Typography variant="h5" style={{ color: "#8c756A" }}>
-          <span style={{ color: "#8c756A" }}>Lux</span>Car
+          LuxCar
         </Typography>
 
         <RightMenuSlider
@@ -142,15 +133,15 @@ const Navbar = () => {
           {sideList("right")}
         </RightMenuSlider>
         <div className={classes.buttonDiv}>
-          <Button component={Link} to="/login" className={classes.logInButton}>
-            Log In
-          </Button>
+          <div style={{ paddingTop: ".3rem" }}>
+            <DriveEtaIcon></DriveEtaIcon>
+            <span>{order?.length}</span>
+          </div>
           <Button
-            component={Link}
-            to="/signup"
-            className={classes.signUpButton}
+            onClick={() => firebase.auth().signOut()}
+            className={classes.LogOutButton}
           >
-            Sign Up
+            Log Out
           </Button>
         </div>
       </Toolbar>
@@ -158,4 +149,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarTwo;

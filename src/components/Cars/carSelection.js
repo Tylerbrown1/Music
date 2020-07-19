@@ -3,64 +3,58 @@ import { Link } from "react-router-dom";
 import data from "./carData";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
-import FilterBar from "./filterBar";
+import { Button, Grid } from "@material-ui/core";
+
+import NavbarTwo from "../NavbarLogIn";
 
 //css styles
 const CarsUl = styled.ul`
-	list-style: none;
-	margin: 5rem;
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  padding-inline-start: 0;
 `;
 
 const CarsImg = styled.img`
-	width: 20rem;
+  width: 20rem;
 `;
 
 const myStyles = makeStyles((theme) => ({
-	RequestButton: {
-		backgroundColor: "#000",
-		color: "#FFFFFF",
-		paddingRight: "12px",
-		paddingLeft: "12px",
-		borderBottomLeftRadius: "30px",
-		borderTopLeftRadius: "30px",
-		borderBottomRightRadius: "30px",
-		borderTopRightRadius: "30px",
-		paddingBottom: "10px",
-		paddingTop: "10px",
-		lineHeight: "16px",
-		fontWeight: 500,
-		fontSize: "14px",
-		cursor: "pointer",
-		transitionProperty: "background",
-		WebkitAppearance: "none",
-		boxShadow: "none",
-		borderStyle: "none",
-	},
+  RequestButton: {},
 }));
 
 function CarHomeScreen(props) {
-	const classes = myStyles();
-	return (
-		<CarsUl className="cars">
-			<h2>Choose a ride</h2>
-			{data.cars.map((car) => (
-				<li>
-					<div className="cars">
-						<Link to={"/eachcar/" + car._id}>
-							<CarsImg className="cars-image" src={car.image} alt="cars" />
-						</Link>
-						<div className="product-name">
-							<Link to={"/eachcar/" + car._id}>{car.name}</Link>
-						</div>
-						<div className="car-brand">{car.brand}</div>
-
-						<Button className={classes.RequestButton}>Request</Button>
-					</div>
-				</li>
-			))}
-		</CarsUl>
-	);
+  const classes = myStyles();
+  return (
+    <>
+      <NavbarTwo position="static" />
+      <h2>Choose a ride</h2>
+      <Grid container spacing={3}>
+        <Grid item sm={3}>
+          <CarsUl className="cars">
+            {data.cars.map((car) => (
+              <li>
+                <div className="cars">
+                  <Link to={"/eachcar/" + car._id}>
+                    <CarsImg
+                      className="cars-image"
+                      src={car.image}
+                      alt="cars"
+                    />
+                  </Link>
+                  <div className="product-name">
+                    <Link to={"/eachcar/" + car._id}>{car.name}</Link>
+                  </div>
+                  <div className="car-brand">{car.brand}</div>
+                </div>
+              </li>
+            ))}
+          </CarsUl>
+        </Grid>
+      </Grid>
+    </>
+  );
 }
 
 export default CarHomeScreen;
