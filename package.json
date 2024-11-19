@@ -16,7 +16,7 @@
     "date-fns": "^2.14.0",
     "dotenv": "^8.2.0",
     "eslint-plugin-react": "^7.20.3",
-    "firebase": "^7.15.5",
+    "firebase": "^10.9.0",
     "firebaseui": "^4.5.1",
     "little-state-machine": "^3.0.2",
     "lodash": "^4.17.15",
